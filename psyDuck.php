@@ -213,6 +213,19 @@ class psyDuck
 	}
 
 	/**
+	 * Return the number of rows in the current storage file
+	 * @return integer 
+	 */
+	public function count ()
+	{
+		$counter = 0;
+		rewind( $this->file_pointer );
+		while ( false !== ( $line = fgets($this->file_pointer, 10) ) )
+			$counter = $counter + substr_count($line, PHP_EOL);
+		return $counter;
+	}
+
+	/**
 	 * create a temporary file to act as a receptor for altered data to replace the current table file
 	 * @return boolean just crete the temp file
 	 */
