@@ -181,6 +181,21 @@ class psyDuck
 	}
 
 	/**
+	 * Do a sort in the file container data, by the pattern function
+	 * 		 the  cycle number of verifications by each request is defined by $loop var
+	 * ** ** ** (for while, this method does nothing. is here just to remember to implement later)
+	 * 
+	 * @param  function $pattern pattern sort function
+	 * @param  integer $loop number of verification cycles for each request
+	 * @return void  an arranged storage file
+	 * @todo make it work for real
+	 */
+	public function arrange ( $pattern, $loop=1 )
+	{
+		# yet to come
+	}
+
+	/**
 	 * create a temporary file to act as a receptor for altered data to replace the current table file
 	 * @return boolean just crete the temp file
 	 */
