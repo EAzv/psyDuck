@@ -112,10 +112,12 @@ class psyDuck
 	{
 		if (is_callable($func)) {
 			foreach ($this->fetch() as $value):
+				$func_result = $func( $value );
+								//@todo need find a bettter way to avoid empty results
 				if ($filter):
-					yield $func( $value );
+					if(false == $func_result) continue;
+					yield $func_result;
 				else:
-					$func_result = $func( $value );
 					if( true === $func_result )
 						yield $value;
 					elseif ( false != $func_result )
