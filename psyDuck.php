@@ -196,6 +196,23 @@ class psyDuck
 	}
 
 	/**
+	 * Do a search within all storage files, applying the $pattern function as parser 
+	 *	if the pattern closure function explicitly return true, the seek loop stops returning the current storage file name 
+	 *		this function can be called before the ->in() method, \(^_^)/	 
+	 * ** ** must order the files list to parse by recently modified files
+	 *		 	
+	 * ** ** ** (for while, this method does nothing. is here just to remember to implement later) '(º_^)'
+	 * 
+	 * @param  function $pattern 
+	 * @return string|void  if the pattern function does match true, return the current storage file name in parsed
+	 * @todo make it work for real
+	 */
+	public function seek ( $pattern )
+	{
+		# yet to come
+	}
+
+	/**
 	 * create a temporary file to act as a receptor for altered data to replace the current table file
 	 * @return boolean just crete the temp file
 	 */
