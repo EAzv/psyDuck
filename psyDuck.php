@@ -134,8 +134,8 @@ class psyDuck
 	public function fetch ()
 	{
 		rewind( $this->file_pointer );
-		while ( false !== ($value = fgets($this->file_pointer)) ) {
-			yield json_decode( $value , true );
+		while ( false !== ($line = fgets($this->file_pointer)) ) {
+			yield json_decode( $line, true );
 		}
 	}
 
@@ -242,12 +242,13 @@ class psyDuck
 	/**
 	 * Write a new line in the temporary supli file
 	 *  the argument must be a array who will be converted in json
-	 * @param  array $data
+	 * @param  array|string $data
+	 * @param  boolean $data if true write data without encode to json format
 	 * @return boolean fwrite function result
 	 */
-	private function write_supply ($data)
+	private function write_supply ( $data, $raw=false )
 	{
-		$_content = json_encode($data) . PHP_EOL;
+		$_content = ( $raw == true ? $data : json_encode($data) . PHP_EOL );
 		return fwrite( $this->supply_file_pointer, $_content );
 	}
 
@@ -265,6 +266,32 @@ class psyDuck
 		unlink( $real_file );
 		rename( $supply_file, $real_file );
 		$this->in( $this->file_name );
+	}
+
+	/**
+	 * Fix some erros that often occur,
+	 * 		* Like two data array in the same line
+	 */
+	private function rawfile_fix ()
+	{
+		$this->start_supply();
+		rewind( $this->file_pointer );
+		while ( false !== ($line = fgets($this->file_pointer)) ) :
+				if( strpos( $line, "\"}{\"" ) !== false )
+					$line = str_replace( "\"}{\"", "\"}".PHP_EOL."{\"", $line);
+				if ( $line != PHP_EOL )
+					$this->write_supply( $line, true );
+		endwhile;
+		$this->set_supply();
+	}
+
+	/**
+	 * Call some examination and fix functions
+     * It is not intended to be called very often
+	 */
+	public function checkup ()
+	{
+		$this->rawfile_fix();
 	}
 
 	/**
