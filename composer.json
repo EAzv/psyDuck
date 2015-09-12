@@ -4,7 +4,6 @@
 	"type": "library",
 	"keywords": [ "lightweight", "json", "storage", "psyduck", "database" ],
 	"license": "MIT",
-	"version": "0.1",
 	"authors": [
 		{
 			"name": "Eduardo Azevedo",

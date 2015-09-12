@@ -188,8 +188,9 @@
 		<div class="col-md-8">
 			<div class=" ">
 				<h3> Pokedex - sample application using the psyduck php class </h3>
-				<p style="text-align:right" > This app takes some images borrowed from <a href="http://pokemondb.net/" target="_blank" >http://pokemondb.net/</a>.	</p>
-				<button style="margin:0 0 1.9rem 8rem" class="btn btn-lt btn-success" onclick="toggle_cadForm(true)" >Register a new Pokemon</button>
+				<a class="btn btn-xs btn-info" style="float:left; margin-left: 4rem" href="../" > Return to apps list </a>
+				<p style="text-align:right" > This app takes some images borrowed from <a href="http://pokemondb.net/" target="_blank" >http://pokemondb.net/</a>. <br>	</p>
+				<center> <button style="" class="btn btn-lt btn-success" onclick="toggle_cadForm(true)" >Register a new Pokemon</button> </center>
 				<div class="row">
 					<div class="jumbotron" id="poke_Form" >
 								<button style="position:absolute;right:3rem;margin-top:-4rem" onclick="toggle_cadForm(false)" >Close</button>
@@ -219,7 +220,7 @@
 							</datalist>
 							<button type="submit" value="register" style="margin: 1rem 0 0 27rem" > <?=(isset($get['edit'])?'Edit':'Register')?> </button>
 						</form>
-					</div>
+					</div> <hr>
 				</div>
 			</div>
 			<table class="table table-striped" >
@@ -293,6 +294,10 @@
  		if (confirm("Do you really want to exclude this pokemon?"))
 			window.location.href = "?delete=" + pkid;
  	}
+
+	if ( window.location.href.indexOf('/?') === -1 )
+			window.location.href = window.location.href + '/?';
+
  </script>
 <?php 
 		echo "<script type=\"text/javascript\"> window.setTimeout(function(){ ";
