@@ -1,0 +1,20 @@
+{
+	"name": "eaz/psyduck",
+	"description": "a small php class to help store data (like a database), using json files",
+	"type": "library",
+	"keywords": [ "lightweight", "json", "storage", "psyduck", "database" ],
+	"license": "MIT",
+	"version": "0.1",
+	"authors": [
+		{
+			"name": "Eduardo Azevedo",
+			"email": "eduardoazevedo2.0@gmail.com"
+		}
+	],
+	"require": {
+		"php": ">=5.6"
+	},
+	"autoload": {
+		"files": ["psyDuck.php"]
+	}
+}
