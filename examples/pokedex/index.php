@@ -1,6 +1,6 @@
 <?php 
 	// inclui a classe
-	require_once "../include_class.php";
+	require_once "../index.php";
 
 /**
  * Pokedex,
@@ -273,9 +273,7 @@
 				</tbody>
 			</table>
 			<hr>
-			<p>
-				Developed by <a href="https://github.com/EduhAzvdo/" target="_blank" >EduhAzvdo</a>
-			</p>
+			<p> Developed by <a href="https://github.com/EduhAzvdo/" target="_blank" >EduhAzvdo</a>	</p>
 		</div>
 		<div class="col-md-2"> <!-- --> </div>
 	</div>
