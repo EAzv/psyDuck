@@ -88,6 +88,31 @@ class psyDuck
 	}
 
 	/**
+	 * runs the list of values and if the value being pointed return some value or true, stop the loop.
+	 *           if true, it returns the entire object, if nothing found return false.
+	 * @param  function $callbk
+	 * @return array|false
+	 */
+	public function get ( $callbk=null )
+	{
+		if (is_callable($callbk)) {
+			foreach ($this->fetch() as $value):
+				$func_result = $callbk( $value );
+				if( true === $func_result ):
+					return $value;
+				elseif( ! $func_result ):
+					continue;
+				else:
+					return $func_result;
+				endif;
+			endforeach;
+			return false;
+		} else {
+			$this->say("the passed argument must be callable");
+		}
+	}
+
+	/**
 	 * Sugar for the function "each", if no closure filter function defined, return all data
 	 * @param  function $pattern filter the data
 	 * @return Generator
