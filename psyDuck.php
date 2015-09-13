@@ -158,6 +158,8 @@ class psyDuck
 	 */
 	public function fetch ()
 	{
+		if (!$this->file_pointer) 
+			$this->say('File pointer not defined');
 		rewind( $this->file_pointer );
 		while ( false !== ($line = fgets($this->file_pointer)) ) {
 			yield json_decode( $line, true );
