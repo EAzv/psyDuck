@@ -135,6 +135,7 @@ class psyDuck
 
 	/**
 	 * Aplly a closure function in each parsed element returned by "fetch"
+	 *    if $filter equal false, the arg function must return, strictly a boolean
 	 * @param  function  $func   
 	 * @param  boolean $filter if defined as true, will expect a boolean result to retrieve data
 	 * @return Generator
@@ -146,8 +147,9 @@ class psyDuck
 				$func_result = $func( $value );
 								//@todo need find a bettter way to avoid empty results
 				if ($filter):
-					if(false == $func_result) continue;
-					yield $func_result;
+					if(false == $func_result)	continue;
+					if(true === $func_result)	yield $value;
+					else						yield $func_result;
 				else:
 					if( true === $func_result )
 						yield $value;
