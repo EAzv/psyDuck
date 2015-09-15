@@ -36,12 +36,17 @@ class psyDuck
 	 *  try to create if doens't exist
 	 * @param string $path 
 	 */
-	public function setContainer ( $path=null )
+	public function setContainer ( $path )
 	{
 		if($path) $path .= DIRECTORY_SEPARATOR; else return false;
 
-		if (!is_dir($path)) // if doesn't exist
-			mkdir( $path, 0777, true ); // try to create
+		if ( !is_dir($path) ){ // if doesn't exist
+			if ( !@mkdir( $path, 0777, true ) ) // try to create
+				$this->say("Fail when trying to create storage folder on path '{$path}'.\n check write permissions.");
+		}
+
+		if ( !is_writable($path) ) // if is not writable
+			$this->say('the especified path "'. $path .'" is not writable.');
 		
 		$this->container_path = $path;
 		return true;
@@ -83,7 +88,33 @@ class psyDuck
 			}
 		} else {
 			$_content = json_encode($data) . PHP_EOL;
-			fwrite( $this->file_pointer, $_content );
+			if (!fwrite( $this->file_pointer, $_content))
+				$this->say('Fails to write file');
+		}
+	}
+
+	/**
+	 * runs the list of values and if the value being pointed return some value or true, stop the loop.
+	 *           if true, it returns the entire object, if nothing found return false.
+	 * @param  function $callbk
+	 * @return array|false
+	 */
+	public function get ( $callbk=null )
+	{
+		if (is_callable($callbk)) {
+			foreach ($this->fetch() as $value):
+				$func_result = $callbk( $value );
+				if( true === $func_result ):
+					return $value;
+				elseif( ! $func_result ):
+					continue;
+				else:
+					return $func_result;
+				endif;
+			endforeach;
+			return false;
+		} else {
+			$this->say("the passed argument must be callable");
 		}
 	}
 
@@ -133,6 +164,8 @@ class psyDuck
 	 */
 	public function fetch ()
 	{
+		if (!$this->file_pointer) 
+			$this->say('File pointer not defined');
 		rewind( $this->file_pointer );
 		while ( false !== ($line = fgets($this->file_pointer)) ) {
 			yield json_decode( $line, true );
@@ -306,16 +339,18 @@ class psyDuck
 				$backtrace = $debug_backtrace;
 		}
 
-		echo "
-			<img style=\"max-height:75px;float:left\" src=\""
-			, 	"http://images.uncyc.org/commons/c/c6/PsyduckSprite.gif"
-			, "\" />
-		";
-		$message = "<p>&nbsp;&nbsp; <i>psyDuck says</i>: <b>{$msg}</b><br>";
+		$message  = "<img style=\"max-height:75px;float:left;margin:6px\" src=\"http://images.uncyc.org/commons/c/c6/PsyduckSprite.gif\" />";
+		$message .= "<p>&nbsp;&nbsp; <i>psyDuck says</i>: <b>{$msg}</b><br>";
 		$message .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 		$message .= "<b>File: </b><i>{$backtrace['file']}</i>, <b>Function: </b><i>{$backtrace['function']}</i>, <b>Line: </b><i>{$backtrace['line']}</i>. </p>";
-		$message = "<html><body>". $message ."</body></html>";
-		print $message; die();
+		$message  = "<html><body>". $message ."</body></html>";
+		
+		// try to avoid print html in terminal
+		if(php_sapi_name() == "cli") {
+			trigger_error("\n\t psyDuck says: {$msg}, Function: {$backtrace['function']}.\n");
+		} else {
+			print $message; die();
+		}
 	}
 
 	/**
