@@ -40,9 +40,11 @@ class psyDuck
 	{
 		if($path) $path .= DIRECTORY_SEPARATOR; else return false;
 
-		if ( !is_dir($path) ) // if doesn't exist
-			@mkdir( $path, 0777, true ); // try to create
-		 
+		if ( !is_dir($path) ){ // if doesn't exist
+			if ( !@mkdir( $path, 0777, true ) ) // try to create
+				$this->say("Fail when trying to create storage folder on path '{$path}'.\n check write permissions.");
+		}
+
 		if ( !is_writable($path) ) // if is not writable
 			$this->say('the especified path "'. $path .'" is not writable.');
 		
@@ -337,12 +339,13 @@ class psyDuck
 				$backtrace = $debug_backtrace;
 		}
 
-		$message  = "<img style=\"max-height:75px;float:left\" src=\"http://images.uncyc.org/commons/c/c6/PsyduckSprite.gif\" />";
+		$message  = "<img style=\"max-height:75px;float:left;margin:6px\" src=\"http://images.uncyc.org/commons/c/c6/PsyduckSprite.gif\" />";
 		$message .= "<p>&nbsp;&nbsp; <i>psyDuck says</i>: <b>{$msg}</b><br>";
 		$message .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 		$message .= "<b>File: </b><i>{$backtrace['file']}</i>, <b>Function: </b><i>{$backtrace['function']}</i>, <b>Line: </b><i>{$backtrace['line']}</i>. </p>";
 		$message  = "<html><body>". $message ."</body></html>";
 		
+		// try to avoid print html in terminal
 		if(php_sapi_name() == "cli") {
 			trigger_error("\n\t psyDuck says: {$msg}, Function: {$backtrace['function']}.\n");
 		} else {
