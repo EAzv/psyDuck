@@ -54,10 +54,10 @@ class psyDuckTest extends PHPUnit_Framework_TestCase
 		$this->test_in();
 
 		// array to insert
-		$to_insert = $this->generateArrayToinsert(true);
+		$to_insert = $this->generateArrayToinsert(0,1);
 		
 		// file content expected to be like this
-		$expected_content = $this->generateContentToCompare(true);
+		$expected_content = $this->generateContentToCompare(0,1);
 		
 		// do insertion
 		self::$psy->insert($to_insert);
@@ -75,10 +75,10 @@ class psyDuckTest extends PHPUnit_Framework_TestCase
 		$this->test_in(); // prepare
 
 		// array to insert
-		$to_insert = $this->generateArrayToinsert(false);
+		$to_insert = $this->generateArrayToinsert(1);
 
 		// file content expected to be like this
-		$expected_content  = $this->generateContentToCompare(false);
+		$expected_content  = $this->generateContentToCompare(0);
 		
 		// do insertion
 		self::$psy->insert($to_insert, true);
@@ -106,7 +106,7 @@ class psyDuckTest extends PHPUnit_Framework_TestCase
 		
 		//shold not find any data, and return false
 		$result_null = self::$psy->get(function($data){
-				if ($data['chave'] == 'valor9')	return true;
+				if ($data['chave'] == 'inexistente')	return true;
 			});
 
 		// should find, modify and retur the data
@@ -137,13 +137,75 @@ class psyDuckTest extends PHPUnit_Framework_TestCase
 	public function test_find()
 	{
 		$this->test_in(); // prepare
-		$expected_result_entire = $this->generateArrayToinsert(true,true);
 
+		##########################################################
+		## tests the result as it is, without modificatios
+		$expected_result_entire = $this->generateArrayToinsert(0);
 		$result_entire = array();
 		foreach (self::$psy->find() as $value)
 			$result_entire[] = $value;
 
+		##########################################################
+		## tests the result with modificatios
+		$expected_result_modified = $this->generateArrayToinsert(0);
+		for ($i=0; $i < count($expected_result_modified); $i++)
+			$expected_result_modified[$i]['chave'] .= ' conta:'.$i;
+		$result_modified = array();
+		$generator_modified = self::$psy->find(function($data){
+				static $counter = -1; $counter++;
+				$data['chave'] .= ' conta:'.$counter;
+				return $data;
+			});
+		foreach ($generator_modified as $value)
+			$result_modified[] = $value;
+
+		##########################################################
+		## tests a false result
+		$expected_result_null = array();
+		$result_null = array();
+		$generator_null = self::$psy->find(function($data){
+				if($data['chave'] == 'inexistente') return true;
+			});
+		foreach ($generator_null as $value)
+			$result_null[] = $value;
+
+		##########################################################
+		## first test of filtered shearch
+		$expected_result_res1 = $this->generateArrayToinsert(3,9); // return values bettwen 3 and 9
+		$result_res1 = array();
+		$generator_res1 = self::$psy->find(function($data){
+			// get the last value, who is a number
+				if( substr( $data['chave'], 5) > 3 
+				&&  substr( $data['chave'], 5) <= 9 ) return true;
+			});
+		foreach ($generator_res1 as $value)
+			$result_res1[] = $value;
+
+		##########################################################
+		## Second test of filtered shearch
+		$expected_result_res2 = array_merge( $this->generateArrayToinsert(0,3), $this->generateArrayToinsert(4) );
+
+		$result_res2 = array();
+		$generator_res2 = self::$psy->find(function($data){
+				if( $data['chave'] != 'valor4' ) return true;
+			});
+		foreach ($generator_res2 as $value)
+			$result_res2[] = $value;
+
+		##########################################################
+		
+		// expect the entire data, without modifications
 		$this->assertEquals( $expected_result_entire, $result_entire);
+
+		// expect data with modifications
+		$this->assertEquals( $expected_result_modified, $result_modified);
+
+		// expect a empty array as result
+		$this->assertEquals( $expected_result_null, $result_null );
+
+		// expect filtered result
+		$this->assertEquals( $expected_result_res1, $result_res1 );
+		$this->assertEquals( $expected_result_res2, $result_res2 );
 
 	}
 
@@ -161,38 +223,30 @@ class psyDuckTest extends PHPUnit_Framework_TestCase
 	}
 
 
-	protected function generateArrayToinsert ($first=false, $entire=false)
+	######################################################################################
+	
+	const ORDINAL = [ 'Primeiro', 'Segundo', 'Terceiro', 'Quarto', 'Quinto', 'Sexto', 'Sétimo', 'Oitavo', 'Nono', 'Décimo', 'Décimo primeiro', 'Décimo segundo', 'Técimo terceiro', 'Décimo quarto', 'Décimo quinto' ];
+
+	protected function generateArrayToinsert ($first=0, $last=15)
 	{
-		if( $first && !$entire ):
-			return array( 'Primeiro', 'chave'=>'valor1', 'numero'=>2015 );
-		elseif ( $first && $entire ):
-			$result = array( $this->generateArrayToinsert(true) );
-			foreach ($this->generateArrayToinsert(false) as $value )
-				$result[] = $value;
-			return $result;
-		else:
-			return array( 
-					['Segundo', 'chave'=>'valor2', 'numero'=>2016],
-					['Terceiro', 'chave'=>'valor3', 'numero'=>2017],
-					['Quarto', 'chave'=>'valor4', 'numero'=>2018],
-					['Quinto', 'chave'=>'valor5', 'numero'=>2019],
-					['Sexto', 'chave'=>'valor6', 'numero'=>2020],
-				);
-		endif;
+		$r_array = array();
+
+		for ( $i = $first+1; $i <= $last; $i++):
+			$r_array[] = array( self::ORDINAL[$i-1], 'chave'=>'valor'.($i), 'numero'=>2015+($i-1) );
+		endfor;
+
+		if (count($r_array) > 1)
+			return $r_array;
+		else
+			return $r_array[0];
 	}
 
-	protected function generateContentToCompare($first=false)
+	protected function generateContentToCompare ($first=0, $last=15)
 	{
-		if($first):
-			return '{"0":"Primeiro","chave":"valor1","numero":2015}'.PHP_EOL;
-		else:
-			$toreturn  = '{"0":"Primeiro","chave":"valor1","numero":2015}'.PHP_EOL;
-			$toreturn .= '{"0":"Segundo","chave":"valor2","numero":2016}'.PHP_EOL;
-			$toreturn .= '{"0":"Terceiro","chave":"valor3","numero":2017}'.PHP_EOL;
-			$toreturn .= '{"0":"Quarto","chave":"valor4","numero":2018}'.PHP_EOL;
-			$toreturn .= '{"0":"Quinto","chave":"valor5","numero":2019}'.PHP_EOL;
-			$toreturn .= '{"0":"Sexto","chave":"valor6","numero":2020}'.PHP_EOL;
-			return $toreturn;
-		endif;
+		$to_return = "";
+		for ( $i = $first+1; $i <= $last; $i++):
+			$to_return .= '{"0":"'. str_replace('é', '\u00e9', self::ORDINAL[$i-1]) .'","chave":"valor'.$i.'","numero":'.(2015+($i-1)).'}'.PHP_EOL;
+		endfor;
+		return $to_return;
 	}
 }
