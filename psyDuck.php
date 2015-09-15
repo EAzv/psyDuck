@@ -99,7 +99,7 @@ class psyDuck
 	 * @param  function $callbk
 	 * @return array|false
 	 */
-	public function get ( $callbk=null )
+	public function get ( $callbk )
 	{
 		if (is_callable($callbk)) {
 			foreach ($this->fetch() as $value):
