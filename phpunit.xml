@@ -1,0 +1,7 @@
+<phpunit bootstrap="psyDuck.php"  colors="true" >
+  <testsuites>
+    <testsuite name="psyDuck" >
+      <file>tests/psyDuckTest.php</file>
+    </testsuite>
+  </testsuites>
+</phpunit>
