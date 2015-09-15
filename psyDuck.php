@@ -36,12 +36,15 @@ class psyDuck
 	 *  try to create if doens't exist
 	 * @param string $path 
 	 */
-	public function setContainer ( $path=null )
+	public function setContainer ( $path )
 	{
 		if($path) $path .= DIRECTORY_SEPARATOR; else return false;
 
-		if (!is_dir($path)) // if doesn't exist
-			mkdir( $path, 0777, true ); // try to create
+		if ( !is_dir($path) ) // if doesn't exist
+			@mkdir( $path, 0777, true ); // try to create
+		 
+		if ( !is_writable($path) ) // if is not writable
+			$this->say('the especified path "'. $path .'" is not writable.');
 		
 		$this->container_path = $path;
 		return true;
@@ -83,7 +86,8 @@ class psyDuck
 			}
 		} else {
 			$_content = json_encode($data) . PHP_EOL;
-			fwrite( $this->file_pointer, $_content );
+			if (!fwrite( $this->file_pointer, $_content))
+				$this->say('Fails to write file');
 		}
 	}
 
@@ -333,16 +337,17 @@ class psyDuck
 				$backtrace = $debug_backtrace;
 		}
 
-		echo "
-			<img style=\"max-height:75px;float:left\" src=\""
-			, 	"http://images.uncyc.org/commons/c/c6/PsyduckSprite.gif"
-			, "\" />
-		";
-		$message = "<p>&nbsp;&nbsp; <i>psyDuck says</i>: <b>{$msg}</b><br>";
+		$message  = "<img style=\"max-height:75px;float:left\" src=\"http://images.uncyc.org/commons/c/c6/PsyduckSprite.gif\" />";
+		$message .= "<p>&nbsp;&nbsp; <i>psyDuck says</i>: <b>{$msg}</b><br>";
 		$message .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 		$message .= "<b>File: </b><i>{$backtrace['file']}</i>, <b>Function: </b><i>{$backtrace['function']}</i>, <b>Line: </b><i>{$backtrace['line']}</i>. </p>";
-		$message = "<html><body>". $message ."</body></html>";
-		print $message; die();
+		$message  = "<html><body>". $message ."</body></html>";
+		
+		if(php_sapi_name() == "cli") {
+			trigger_error("\n\t psyDuck says: {$msg}, Function: {$backtrace['function']}.\n");
+		} else {
+			print $message; die();
+		}
 	}
 
 	/**
