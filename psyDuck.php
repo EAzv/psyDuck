@@ -14,7 +14,7 @@
 class psyDuck
 {
 
-	// store the folder path to store the json files
+	// the folder path to store the json files
 	private $container_path;
 	private $file_pointer; // current json file pointer
 	private $file_name; // currente json file name
@@ -256,6 +256,21 @@ class psyDuck
 		while ( false !== ( $line = fgets($this->file_pointer, 10) ) )
 			$counter = $counter + substr_count($line, PHP_EOL);
 		return $counter;
+	}
+
+	/**
+	 * Delete a entire storage file, returning excluded data
+	 * ** ** should be used with careful
+	 *  
+	 * ** ** ** (for while, this method does nothing. is here just to remember to implement later) '(º_^)'
+	 * 
+	 * @param  [type] $file [description]
+	 * @return array|boolean  return the data excluded or false
+	 * @todo make it work for real
+	 */
+	public function drop ( $file )
+	{
+		# yet to come
 	}
 
 	/**
