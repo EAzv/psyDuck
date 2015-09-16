@@ -503,3 +503,165 @@
 {"id":"55f8af2fa8187","index":492,"name":"Shaymin","type":"grass","generation":"4","pic":"http:\/\/img.pokemondb.net\/artwork\/shaymin-land.jpg"}
 {"id":"55f8af2fa81e6","index":493,"name":"Shaymin","type":"grass flying","generation":"4","pic":"http:\/\/img.pokemondb.net\/artwork\/shaymin-sky.jpg"}
 {"id":"55f8af2fa8245","index":494,"name":"Arceus","type":"normal","generation":"4","pic":"http:\/\/img.pokemondb.net\/artwork\/arceus.jpg"}
+{"id":"55f8bc8df1ee8","index":494,"name":"Victini","type":"psychic fire","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/victini.jpg"}
+{"id":"55f8bc8df1f51","index":495,"name":"Snivy","type":"grass","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/snivy.jpg"}
+{"id":"55f8bc8df1fb5","index":496,"name":"Servine","type":"grass","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/servine.jpg"}
+{"id":"55f8bc8df2017","index":497,"name":"Serperior","type":"grass","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/serperior.jpg"}
+{"id":"55f8bc8df2086","index":498,"name":"Tepig","type":"fire","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/tepig.jpg"}
+{"id":"55f8bc8df211b","index":499,"name":"Pignite","type":"fire fighting","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/pignite.jpg"}
+{"id":"55f8bc8df2221","index":500,"name":"Emboar","type":"fire fighting","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/emboar.jpg"}
+{"id":"55f8bc8df2349","index":501,"name":"Oshawott","type":"water","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/oshawott.jpg"}
+{"id":"55f8bc8df23ef","index":502,"name":"Dewott","type":"water","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/dewott.jpg"}
+{"id":"55f8bc8df2456","index":503,"name":"Samurott","type":"water","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/samurott.jpg"}
+{"id":"55f8bc8df24ba","index":504,"name":"Patrat","type":"normal","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/patrat.jpg"}
+{"id":"55f8bc8df251d","index":505,"name":"Watchog","type":"normal","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/watchog.jpg"}
+{"id":"55f8bc8df257f","index":506,"name":"Lillipup","type":"normal","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/lillipup.jpg"}
+{"id":"55f8bc8df25e1","index":507,"name":"Herdier","type":"normal","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/herdier.jpg"}
+{"id":"55f8bc8df2643","index":508,"name":"Stoutland","type":"normal","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/stoutland.jpg"}
+{"id":"55f8bc8df26a5","index":509,"name":"Purrloin","type":"dark","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/purrloin.jpg"}
+{"id":"55f8bc8df2706","index":510,"name":"Liepard","type":"dark","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/liepard.jpg"}
+{"id":"55f8bc8df2768","index":511,"name":"Pansage","type":"grass","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/pansage.jpg"}
+{"id":"55f8bc8df27cb","index":512,"name":"Simisage","type":"grass","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/simisage.jpg"}
+{"id":"55f8bc8df282d","index":513,"name":"Pansear","type":"fire","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/pansear.jpg"}
+{"id":"55f8bc8df288f","index":514,"name":"Simisear","type":"fire","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/simisear.jpg"}
+{"id":"55f8bc8df28f1","index":515,"name":"Panpour","type":"water","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/panpour.jpg"}
+{"id":"55f8bc8df2953","index":516,"name":"Simipour","type":"water","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/simipour.jpg"}
+{"id":"55f8bc8df29b5","index":517,"name":"Munna","type":"psychic","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/munna.jpg"}
+{"id":"55f8bc8df2a17","index":518,"name":"Musharna","type":"psychic","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/musharna.jpg"}
+{"id":"55f8bc8df2a79","index":519,"name":"Pidove","type":"normal flying","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/pidove.jpg"}
+{"id":"55f8bc8df2ada","index":520,"name":"Tranquill","type":"normal flying","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/tranquill.jpg"}
+{"id":"55f8bc8df2b3d","index":521,"name":"Unfezant","type":"normal flying","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/unfezant.jpg"}
+{"id":"55f8bc8df2b9f","index":521,"name":"Unfezant","type":"normal flying","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/unfezant.jpg"}
+{"id":"55f8bc8df2c01","index":522,"name":"Blitzle","type":"electric","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/blitzle.jpg"}
+{"id":"55f8bc8df2c63","index":523,"name":"Zebstrika","type":"electric","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/zebstrika.jpg"}
+{"id":"55f8bc8df2cc5","index":524,"name":"Roggenrola","type":"rock","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/roggenrola.jpg"}
+{"id":"55f8bc8df2d26","index":525,"name":"Boldore","type":"rock","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/boldore.jpg"}
+{"id":"55f8bc8df2d93","index":526,"name":"Gigalith","type":"rock","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/gigalith.jpg"}
+{"id":"55f8bc8df2df6","index":527,"name":"Woobat","type":"psychic flying","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/woobat.jpg"}
+{"id":"55f8bc8df2e57","index":528,"name":"Swoobat","type":"psychic flying","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/swoobat.jpg"}
+{"id":"55f8bc8df2eb9","index":529,"name":"Drilbur","type":"ground","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/drilbur.jpg"}
+{"id":"55f8bc8df2f1a","index":530,"name":"Excadrill","type":"ground steel","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/excadrill.jpg"}
+{"id":"55f8bc8df2f7c","index":531,"name":"Audino","type":"normal","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/audino.jpg"}
+{"id":"55f8bc8df2fde","index":532,"name":"Timburr","type":"fighting","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/timburr.jpg"}
+{"id":"55f8bc8df3040","index":533,"name":"Gurdurr","type":"fighting","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/gurdurr.jpg"}
+{"id":"55f8bc8df30aa","index":534,"name":"Conkeldurr","type":"fighting","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/conkeldurr.jpg"}
+{"id":"55f8bc8df3139","index":535,"name":"Tympole","type":"water","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/tympole.jpg"}
+{"id":"55f8bc8df32a0","index":536,"name":"Palpitoad","type":"water ground","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/palpitoad.jpg"}
+{"id":"55f8bc8df3365","index":537,"name":"Seismitoad","type":"water ground","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/seismitoad.jpg"}
+{"id":"55f8bc8df3734","index":538,"name":"Throh","type":"fighting","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/throh.jpg"}
+{"id":"55f8bc8df37b6","index":539,"name":"Sawk","type":"fighting","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/sawk.jpg"}
+{"id":"55f8bc8df381c","index":540,"name":"Sewaddle","type":"bug grass","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/sewaddle.jpg"}
+{"id":"55f8bc8df38b4","index":541,"name":"Swadloon","type":"bug grass","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/swadloon.jpg"}
+{"id":"55f8bc8df3922","index":542,"name":"Leavanny","type":"bug grass","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/leavanny.jpg"}
+{"id":"55f8bc8df39ce","index":543,"name":"Venipede","type":"bug poison","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/venipede.jpg"}
+{"id":"55f8bc8df3a42","index":544,"name":"Whirlipede","type":"bug poison","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/whirlipede.jpg"}
+{"id":"55f8bc8df3aaf","index":545,"name":"Scolipede","type":"bug poison","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/scolipede.jpg"}
+{"id":"55f8bc8df3b19","index":546,"name":"Cottonee","type":"grass fairy","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/cottonee.jpg"}
+{"id":"55f8bc8df3b84","index":547,"name":"Whimsicott","type":"grass fairy","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/whimsicott.jpg"}
+{"id":"55f8bc8df3bf5","index":548,"name":"Petilil","type":"grass","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/petilil.jpg"}
+{"id":"55f8bc8df3c84","index":549,"name":"Lilligant","type":"grass","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/lilligant.jpg"}
+{"id":"55f8bc8df3cfd","index":550,"name":"Basculin","type":"water","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/basculin.jpg"}
+{"id":"55f8bc8df3d5e","index":550,"name":"Basculin","type":"water","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/basculin.jpg"}
+{"id":"55f8bc8df3dc8","index":551,"name":"Sandile","type":"ground dark","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/sandile.jpg"}
+{"id":"55f8bc8df3e57","index":552,"name":"Krokorok","type":"ground dark","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/krokorok.jpg"}
+{"id":"55f8bc8df3eef","index":553,"name":"Krookodile","type":"ground dark","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/krookodile.jpg"}
+{"id":"55f8bc8df3f7f","index":554,"name":"Darumaka","type":"fire","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/darumaka.jpg"}
+{"id":"55f8bc8df3fd7","index":555,"name":"Darmanitan","type":"fire","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/darmanitan-standard.jpg"}
+{"id":"55f8bc8df4042","index":555,"name":"Darmanitan","type":"fire psychic","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/darmanitan-zen.jpg"}
+{"id":"55f8bc8df40d8","index":556,"name":"Maractus","type":"grass","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/maractus.jpg"}
+{"id":"55f8bc8df414f","index":557,"name":"Dwebble","type":"bug rock","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/dwebble.jpg"}
+{"id":"55f8bc8df41b8","index":558,"name":"Crustle","type":"bug rock","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/crustle.jpg"}
+{"id":"55f8bc8df421f","index":559,"name":"Scraggy","type":"dark fighting","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/scraggy.jpg"}
+{"id":"55f8bc8e00048","index":560,"name":"Scrafty","type":"dark fighting","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/scrafty.jpg"}
+{"id":"55f8bc8e000b6","index":561,"name":"Sigilyph","type":"psychic flying","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/sigilyph.jpg"}
+{"id":"55f8bc8e00146","index":562,"name":"Yamask","type":"ghost","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/yamask.jpg"}
+{"id":"55f8bc8e001d5","index":563,"name":"Cofagrigus","type":"ghost","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/cofagrigus.jpg"}
+{"id":"55f8bc8e0025e","index":564,"name":"Tirtouga","type":"water rock","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/tirtouga.jpg"}
+{"id":"55f8bc8e002ea","index":565,"name":"Carracosta","type":"water rock","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/carracosta.jpg"}
+{"id":"55f8bc8e0037a","index":566,"name":"Archen","type":"rock flying","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/archen.jpg"}
+{"id":"55f8bc8e00535","index":567,"name":"Archeops","type":"rock flying","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/archeops.jpg"}
+{"id":"55f8bc8e00675","index":568,"name":"Trubbish","type":"poison","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/trubbish.jpg"}
+{"id":"55f8bc8e006e6","index":569,"name":"Garbodor","type":"poison","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/garbodor.jpg"}
+{"id":"55f8bc8e00759","index":570,"name":"Zorua","type":"dark","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/zorua.jpg"}
+{"id":"55f8bc8e007ca","index":571,"name":"Zoroark","type":"dark","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/zoroark.jpg"}
+{"id":"55f8bc8e00890","index":572,"name":"Minccino","type":"normal","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/minccino.jpg"}
+{"id":"55f8bc8e00904","index":573,"name":"Cinccino","type":"normal","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/cinccino.jpg"}
+{"id":"55f8bc8e009c4","index":574,"name":"Gothita","type":"psychic","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/gothita.jpg"}
+{"id":"55f8bc8e00a3f","index":575,"name":"Gothorita","type":"psychic","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/gothorita.jpg"}
+{"id":"55f8bc8e00b2d","index":576,"name":"Gothitelle","type":"psychic","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/gothitelle.jpg"}
+{"id":"55f8bc8e00bbf","index":577,"name":"Solosis","type":"psychic","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/solosis.jpg"}
+{"id":"55f8bc8e00c2c","index":578,"name":"Duosion","type":"psychic","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/duosion.jpg"}
+{"id":"55f8bc8e00c8f","index":579,"name":"Reuniclus","type":"psychic","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/reuniclus.jpg"}
+{"id":"55f8bc8e00d19","index":580,"name":"Ducklett","type":"water flying","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/ducklett.jpg"}
+{"id":"55f8bc8e00da9","index":581,"name":"Swanna","type":"water flying","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/swanna.jpg"}
+{"id":"55f8bc8e00e13","index":582,"name":"Vanillite","type":"ice","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/vanillite.jpg"}
+{"id":"55f8bc8e00e79","index":583,"name":"Vanillish","type":"ice","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/vanillish.jpg"}
+{"id":"55f8bc8e01054","index":584,"name":"Vanilluxe","type":"ice","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/vanilluxe.jpg"}
+{"id":"55f8bc8e010c3","index":585,"name":"Deerling","type":"normal grass","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/deerling.jpg"}
+{"id":"55f8bc8e0112c","index":586,"name":"Sawsbuck","type":"normal grass","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/sawsbuck.jpg"}
+{"id":"55f8bc8e01196","index":587,"name":"Emolga","type":"electric flying","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/emolga.jpg"}
+{"id":"55f8bc8e011fe","index":588,"name":"Karrablast","type":"bug","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/karrablast.jpg"}
+{"id":"55f8bc8e01267","index":589,"name":"Escavalier","type":"bug steel","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/escavalier.jpg"}
+{"id":"55f8bc8e012d0","index":590,"name":"Foongus","type":"grass poison","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/foongus.jpg"}
+{"id":"55f8bc8e01338","index":591,"name":"Amoonguss","type":"grass poison","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/amoonguss.jpg"}
+{"id":"55f8bc8e013a1","index":592,"name":"Frillish","type":"water ghost","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/frillish.jpg"}
+{"id":"55f8bc8e013fc","index":592,"name":"Frillish","type":"water ghost","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/frillish.jpg"}
+{"id":"55f8bc8e0148b","index":593,"name":"Jellicent","type":"water ghost","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/jellicent.jpg"}
+{"id":"55f8bc8e014f9","index":593,"name":"Jellicent","type":"water ghost","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/jellicent.jpg"}
+{"id":"55f8bc8e01563","index":594,"name":"Alomomola","type":"water","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/alomomola.jpg"}
+{"id":"55f8bc8e015cc","index":595,"name":"Joltik","type":"bug electric","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/joltik.jpg"}
+{"id":"55f8bc8e01634","index":596,"name":"Galvantula","type":"bug electric","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/galvantula.jpg"}
+{"id":"55f8bc8e0169e","index":597,"name":"Ferroseed","type":"grass steel","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/ferroseed.jpg"}
+{"id":"55f8bc8e01708","index":598,"name":"Ferrothorn","type":"grass steel","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/ferrothorn.jpg"}
+{"id":"55f8bc8e01771","index":599,"name":"Klink","type":"steel","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/klink.jpg"}
+{"id":"55f8bc8e017da","index":600,"name":"Klang","type":"steel","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/klang.jpg"}
+{"id":"55f8bc8e01842","index":601,"name":"Klinklang","type":"steel","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/klinklang.jpg"}
+{"id":"55f8bc8e018aa","index":602,"name":"Tynamo","type":"electric","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/tynamo.jpg"}
+{"id":"55f8bc8e01913","index":603,"name":"Eelektrik","type":"electric","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/eelektrik.jpg"}
+{"id":"55f8bc8e0197c","index":604,"name":"Eelektross","type":"electric","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/eelektross.jpg"}
+{"id":"55f8bc8e019e1","index":605,"name":"Elgyem","type":"psychic","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/elgyem.jpg"}
+{"id":"55f8bc8e01a57","index":606,"name":"Beheeyem","type":"psychic","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/beheeyem.jpg"}
+{"id":"55f8bc8e01ac1","index":607,"name":"Litwick","type":"ghost fire","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/litwick.jpg"}
+{"id":"55f8bc8e01b2a","index":608,"name":"Lampent","type":"ghost fire","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/lampent.jpg"}
+{"id":"55f8bc8e01b92","index":609,"name":"Chandelure","type":"ghost fire","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/chandelure.jpg"}
+{"id":"55f8bc8e01bfb","index":610,"name":"Axew","type":"dragon","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/axew.jpg"}
+{"id":"55f8bc8e01c63","index":611,"name":"Fraxure","type":"dragon","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/fraxure.jpg"}
+{"id":"55f8bc8e01ccb","index":612,"name":"Haxorus","type":"dragon","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/haxorus.jpg"}
+{"id":"55f8bc8e01d42","index":613,"name":"Cubchoo","type":"ice","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/cubchoo.jpg"}
+{"id":"55f8bc8e01dab","index":614,"name":"Beartic","type":"ice","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/beartic.jpg"}
+{"id":"55f8bc8e01e14","index":615,"name":"Cryogonal","type":"ice","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/cryogonal.jpg"}
+{"id":"55f8bc8e01e7c","index":616,"name":"Shelmet","type":"bug","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/shelmet.jpg"}
+{"id":"55f8bc8e01ee5","index":617,"name":"Accelgor","type":"bug","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/accelgor.jpg"}
+{"id":"55f8bc8e01fce","index":618,"name":"Stunfisk","type":"ground electric","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/stunfisk.jpg"}
+{"id":"55f8bc8e02069","index":619,"name":"Mienfoo","type":"fighting","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/mienfoo.jpg"}
+{"id":"55f8bc8e020d4","index":620,"name":"Mienshao","type":"fighting","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/mienshao.jpg"}
+{"id":"55f8bc8e0213d","index":621,"name":"Druddigon","type":"dragon","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/druddigon.jpg"}
+{"id":"55f8bc8e021a6","index":622,"name":"Golett","type":"ground ghost","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/golett.jpg"}
+{"id":"55f8bc8e0220e","index":623,"name":"Golurk","type":"ground ghost","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/golurk.jpg"}
+{"id":"55f8bc8e0227d","index":624,"name":"Pawniard","type":"dark steel","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/pawniard.jpg"}
+{"id":"55f8bc8e022e7","index":625,"name":"Bisharp","type":"dark steel","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/bisharp.jpg"}
+{"id":"55f8bc8e02350","index":626,"name":"Bouffalant","type":"normal","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/bouffalant.jpg"}
+{"id":"55f8bc8e023b9","index":627,"name":"Rufflet","type":"normal flying","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/rufflet.jpg"}
+{"id":"55f8bc8e02421","index":628,"name":"Braviary","type":"normal flying","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/braviary.jpg"}
+{"id":"55f8bc8e02489","index":629,"name":"Vullaby","type":"dark flying","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/vullaby.jpg"}
+{"id":"55f8bc8e024f1","index":630,"name":"Mandibuzz","type":"dark flying","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/mandibuzz.jpg"}
+{"id":"55f8bc8e0255a","index":631,"name":"Heatmor","type":"fire","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/heatmor.jpg"}
+{"id":"55f8bc8e025c2","index":632,"name":"Durant","type":"bug steel","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/durant.jpg"}
+{"id":"55f8bc8e0262a","index":633,"name":"Deino","type":"dark dragon","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/deino.jpg"}
+{"id":"55f8bc8e0269d","index":634,"name":"Zweilous","type":"dark dragon","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/zweilous.jpg"}
+{"id":"55f8bc8e02707","index":635,"name":"Hydreigon","type":"dark dragon","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/hydreigon.jpg"}
+{"id":"55f8bc8e02771","index":636,"name":"Larvesta","type":"bug fire","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/larvesta.jpg"}
+{"id":"55f8bc8e027d9","index":637,"name":"Volcarona","type":"bug fire","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/volcarona.jpg"}
+{"id":"55f8bc8e02842","index":638,"name":"Cobalion","type":"steel fighting","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/cobalion.jpg"}
+{"id":"55f8bc8e028ab","index":639,"name":"Terrakion","type":"rock fighting","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/terrakion.jpg"}
+{"id":"55f8bc8e02914","index":640,"name":"Virizion","type":"grass fighting","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/virizion.jpg"}
+{"id":"55f8bc8e0297c","index":641,"name":"Tornadus","type":"flying","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/tornadus.jpg"}
+{"id":"55f8bc8e029e4","index":642,"name":"Thundurus","type":"electric flying","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/thundurus.jpg"}
+{"id":"55f8bc8e02a4d","index":643,"name":"Reshiram","type":"dragon fire","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/reshiram.jpg"}
+{"id":"55f8bc8e02ab6","index":644,"name":"Zekrom","type":"dragon electric","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/zekrom.jpg"}
+{"id":"55f8bc8e02b1f","index":645,"name":"Landorus","type":"ground flying","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/landorus.jpg"}
+{"id":"55f8bc8e02b87","index":646,"name":"Kyurem","type":"dragon ice","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/kyurem.jpg"}
+{"id":"55f8bc8e02bf0","index":647,"name":"Keldeo","type":"water fighting","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/keldeo.jpg"}
+{"id":"55f8bc8e02c5a","index":648,"name":"Meloetta","type":"normal psychic","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/meloetta-aria.jpg"}
+{"id":"55f8bc8e03061","index":648,"name":"Meloetta","type":"normal fighting","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/meloetta-pirouette.jpg"}
+{"id":"55f8bc8e030ff","index":649,"name":"Genesect","type":"bug steel","generation":"5","pic":"http:\/\/img.pokemondb.net\/artwork\/genesect.jpg"}
