@@ -116,12 +116,12 @@
 	
 	// set a array with only six of the thousands generations from pokemon (ps: i quit in the 3th)
 	$pokemon_generations_generator = array(
-						'1'	=> 'First',
-						'2'	=> 'Second',
-						'3'	=> 'Third',
-						'4'	=> 'Fourth',
-						'5'	=> 'Fifth',
-						'6'	=> 'Sixth',
+						'1'	=> 'First I',
+						'2'	=> 'Second II',
+						'3'	=> 'Third III',
+						'4'	=> 'Fourth IV',
+						'5'	=> 'Fifth V',
+						'6'	=> 'Sixth VI',
 					);
 
 
@@ -225,7 +225,7 @@
 			</div>
 			<table class="table table-striped" >
 				<thead>
-					<tr> <th colspan="6" >
+					<tr> <th colspan="7" >
 						<form>
 							<label for="pokename" >Name:</label>
 							<input type="text" id="pokename" name="pokename" value="<?php if(isset($get['pokename'])) print $get['pokename'] ?>" style="max-width: 15rem;" >
@@ -256,14 +256,15 @@
 						</form>
 					</th></tr>
 					<tr>
-						<th width="2%" > # </th><th width="17%" > &nbsp; </th><th> Pokémon </th><th width="23%" > Type </th>
+						<th width="2%" > Index </th><th width="4%" > Generation </th><th width="17%" > &nbsp; </th><th> Pokémon </th><th width="17%" > Type </th>
 						<th width="9%" > Edit </th> <th width="10%" > Delete </th>
 					</tr>
 				</thead>
 				<tbody>
 			<?php foreach ($pokemons as $pokemon): ?>
 					<tr>
-						<td><?=$pokemon['index']?></td>
+						<td>#<?=$pokemon['index']?></td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=explode(' ', $pokemon_generations_generator[$pokemon['generation']])[1]?></td>
 						<td><center><img src="<?=$pokemon['pic']?>" class="pokepic" ></center></td>
 						<td>&nbsp;&nbsp;<?=$pokemon['name']?></td>
 						<td>&nbsp;&nbsp;<?=$pokemon['type']?></td>
@@ -310,19 +311,6 @@
 			echo " toggle_cadForm(false); ";
  		endif;
 		echo " }, 100); </script>";
-
-
-	$psyduck->update(function(&$data){
-			$rigth_order = array(
-					'id'			=> $data['id'],
-					'index'			=> $data['index'],
-					'name'			=> $data['name'],
-					'type'			=> $data['type'],
-					'generation'	=> $data['generation'],
-					'pic'			=> $data['pic']
-				);
-			$data = $rigth_order;
-		});
  ?>
 </body>
 </html>
