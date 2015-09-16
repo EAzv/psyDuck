@@ -310,6 +310,19 @@
 			echo " toggle_cadForm(false); ";
  		endif;
 		echo " }, 100); </script>";
+
+
+	$psyduck->update(function(&$data){
+			$rigth_order = array(
+					'id'			=> $data['id'],
+					'index'			=> $data['index'],
+					'name'			=> $data['name'],
+					'type'			=> $data['type'],
+					'generation'	=> $data['generation'],
+					'pic'			=> $data['pic']
+				);
+			$data = $rigth_order;
+		});
  ?>
 </body>
 </html>
