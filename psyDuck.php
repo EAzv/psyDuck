@@ -228,9 +228,7 @@ class psyDuck
 		$this->start_supply();
 		if (is_callable($pattern)) {
 			foreach ($this->fetch() as $data):
-					$func_result = $pattern( $data );
-				
-					if ( $func_result )
+					if ( $func_result = $pattern( $data ) )
 						$this->write_supply( $func_result );
 					else
 						$this->write_supply( $data );
