@@ -293,6 +293,27 @@ class psyDuckTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
+	 * @covers count
+	 * @depends test_insert_multlines
+	 */
+	public function test_count()
+	{
+		$this->test_in(); // prepare
+		self::$psy->delete(function(){ return true; }); // prepare
+		self::$psy->insert( $this->generateArrayToinsert(0,5), true);
+
+		$expected_result_res1 = 5;
+		$result_res1 = self::$psy->count();
+
+		$this->assertEquals( $expected_result_res1, $result_res1);
+
+		// restore
+		self::$psy->delete(function(){ return true; });
+		$this->test_insert(); // prepare
+		$this->test_insert_multlines(); // prepare
+	}
+
+	/**
 	 * function drop not yet implemented in psyDuck class, 
 	 *    this is jus a prototype
 	 * @depends test_create
