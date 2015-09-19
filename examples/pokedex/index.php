@@ -7,6 +7,9 @@
  * 	an example app using php psyDuck class
  */
 
+	// to get the execution time
+	$time_start = microtime(true);
+
 
 
 	// easy nick for _GET
@@ -17,8 +20,11 @@
 	// set the container folder
 	$psyduck->setContainer( dirname(__FILE__) . DIRECTORY_SEPARATOR . 'storage' );
 
-							# the container folder as table
+		# container (like a table
 	$psyduck->in('pokemons');
+
+
+
 
 	// if requested for a new insertion
 	if (isset($get['new'])) {
@@ -35,10 +41,10 @@
 
 	// if requested for a update
 	if (isset($get['update'])) {
-
+						// note that it is passed as reference
 		$psyduck->update(function (&$data) use ($get) {
 				
-				// given that it will go through all the records,
+				// given that, it will go through all the records,
 				// 	takes opportunity to do some small corrections in the types
 				$data['type'] = trim($data['type']);
 				$data['type'] = strtolower($data['type']);
@@ -127,18 +133,14 @@
 
 	// set a array with the pokemon types, retrieved from the records
 	$pokemon_types = [];
-
 	// 
 	foreach ($psyduck->fetch() as $_pk):
-		
 		// split spaces
 		$_pk['type'] = explode(' ', $_pk['type']);
-		
 		for ($i=0; $i < count($_pk['type']); $i++)
 			if ( !in_array( $_pk['type'][$i], $pokemon_types) )
 				$pokemon_types[] = $_pk['type'][$i];
 	endforeach;
-
 	asort($pokemon_types);
 
 
@@ -156,9 +158,10 @@
 
 	// but if, is requested with a specific id, get the proper value
 	if (isset($_GET['edit'])) {
-
-		foreach ( $psyduck->fetch() as $_pk )
-			if ( $_GET['edit'] == $_pk['id'] ) $pokedit = $_pk;
+		$pokedit = $psyduck->node(function($data){
+				if ( $_GET['edit'] == $data['id'] )
+					return $data;
+			})[0];
 	}
 
  	
@@ -261,9 +264,14 @@
 					</tr>
 				</thead>
 				<tbody>
-			<?php foreach ($pokemons as $pokemon): ?>
+			<?php
+
+				$index_count = 01;
+				
+				foreach ($pokemons as $pokemon):
+			?>
 					<tr>
-						<td>#<?=$pokemon['index']?></td>
+						<td><sup><?=($index_count++)?></sup>#<?=$pokemon['index']?></td>
 						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=explode(' ', $pokemon_generations_generator[$pokemon['generation']])[1]?></td>
 						<td><center><img src="<?=$pokemon['pic']?>" class="pokepic" ></center></td>
 						<td>&nbsp;&nbsp;<?=$pokemon['name']?></td>
@@ -274,8 +282,14 @@
 			<?php endforeach; ?>
 				</tbody>
 			</table>
-			<hr>
-			<p> Developed by <a href="https://github.com/EduhAzvdo/" target="_blank" >EduhAzvdo</a>	</p>
+			<hr><br>
+			<p>
+				<small style="float: left" >
+					<?= "Total execution time: <i>" . ( microtime(true) - $time_start ) . "</i>" ?>
+				</small>
+				<span style="float:right" > Developed by <a href="https://github.com/EduhAzvdo/" target="_blank" >EduhAzvdo</a>	</span>
+			</p>
+			<br><br><br><br><br>
 		</div>
 		<div class="col-md-2"> <!-- --> </div>
 	</div>
@@ -312,5 +326,6 @@
  		endif;
 		echo " }, 100); </script>";
  ?>
+
 </body>
 </html>
