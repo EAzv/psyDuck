@@ -228,8 +228,12 @@ class psyDuck
 		$this->start_supply();
 		if (is_callable($pattern)) {
 			foreach ($this->fetch() as $data):
-					$pattern( $data );
-					$this->write_supply( $data );
+					$func_result = $pattern( $data );
+				
+					if ( $func_result )
+						$this->write_supply( $func_result );
+					else
+						$this->write_supply( $data );
 			endforeach;
 		} else {
 			return $this->say("you feel lucky? ... sure? why are you calling the update function without a closure function to filter?");
