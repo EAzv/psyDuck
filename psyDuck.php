@@ -134,6 +134,28 @@ class psyDuck
 	}
 
 	/**
+	 * Return a array with the result of function each or fetch if no closure function was passed
+	 *     must be used with careful
+	 * @param  function $pattern filter the data
+	 * @return array
+	 */
+	public function node ( $pattern=null )
+	{
+		if (is_callable($pattern))
+			$generator = $this->each( $pattern, true );
+		else
+			$generator = $this->fetch();
+
+		$result = array();
+		
+		foreach ( $generator as $line):
+			$result[] = $line;
+		endforeach;
+
+		return $result;
+	}
+
+	/**
 	 * Aplly a closure function in each parsed element returned by "fetch"
 	 *    if $filter equal false, the arg function must return, strictly a boolean
 	 * @param  function  $func   
@@ -178,7 +200,7 @@ class psyDuck
 	 * Delete a row line
 	 *  the closure function should return "true" when receives the value of array/line index to delete
 	 * @param  function $pattern should return true to delete de current index
-	 * @return boolean
+	 * @return void
 	 */
 	public function delete ( $pattern=null )
 	{
