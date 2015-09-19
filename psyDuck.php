@@ -218,8 +218,9 @@ class psyDuck
 	}
 
 	/**
-	 * update modified inside the passed colsure function
+	 * update as modified inside the passed closure function
 	 * the closure function's argument must be passed as reference, in order to alter the data
+	 * ** the modifications can be directly returned as well
 	 * @param  function $pattern the argument should be set as reference (with & prefix)
 	 * @return void
 	 */

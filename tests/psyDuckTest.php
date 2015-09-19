@@ -131,7 +131,7 @@ class psyDuckTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers find
+	 * @covers find, each and fetch
 	 * @depends test_insert_multlines
 	 */
 	public function test_find()
@@ -183,8 +183,8 @@ class psyDuckTest extends PHPUnit_Framework_TestCase
 
 		##########################################################
 		## Second test of filtered shearch
+		#	                                                             jump the 4º index
 		$expected_result_res2 = array_merge( $this->generateArrayToinsert(0,3), $this->generateArrayToinsert(4) );
-
 		$result_res2 = array();
 		$generator_res2 = self::$psy->find(function($data){
 				if( $data['chave'] != 'valor4' ) return true;
@@ -209,6 +209,88 @@ class psyDuckTest extends PHPUnit_Framework_TestCase
 
 	}
 
+	/**
+	 * @covers node
+	 * @depends test_insert_multlines
+	 */
+	public function test_node()
+	{
+		$this->test_in(); // prepare
+		
+		$expected_result_entire = $this->generateArrayToinsert(0);
+		$result_entire = self::$psy->node();
+
+		$expected_result_modified = $this->generateArrayToinsert(0);
+		for ($i=0; $i < count($expected_result_modified); $i++)
+			$expected_result_modified[$i]['chave'] = $i;
+		$result_modified = self::$psy->node(function($data){
+				static $count = -1; $count++;
+				$data['chave'] = $count;
+				return $data;
+			});
+
+		// expect the entire data, without modifications
+		$this->assertEquals( $expected_result_entire, $result_entire);
+
+		// expect data with modifications
+		$this->assertEquals( $expected_result_modified, $result_modified);
+
+	}
+
+	/**
+	 * @covers delete
+	 * @depends test_insert_multlines
+	 */
+	public function test_delete()
+	{
+		$this->test_in(); // prepare
+
+		# delete only one line                                       jump the 3º index
+		$expected_result_res1 = array_merge( $this->generateArrayToinsert(0,2), $this->generateArrayToinsert(3) );
+		self::$psy->delete(function($data){
+				if($data[0] == 'Terceiro') return true;
+			});
+		$result_res1 = self::$psy->node();
+
+		# delete all
+		$expected_result_res2 = array();
+		self::$psy->delete(function($data){
+				return true;
+			});
+		$result_res2 = self::$psy->node();
+
+		$this->assertEquals( $expected_result_res1, $result_res1 );
+		$this->assertEquals( $expected_result_res2, $result_res2 );
+
+		// restore
+		$this->test_insert(); // prepare
+		$this->test_insert_multlines(); // prepare
+	}
+
+	/**
+	 * @covers update
+	 * // @ # depends delete
+	 */
+	public function test_update()
+	{
+		$this->test_in(); // prepare
+		
+		$expected_result_res1 = $this->generateArrayToinsert(0);
+		for ($i=0; $i < count($expected_result_res1); $i++)
+			$expected_result_res1[$i]['chave'] = base64_encode($expected_result_res1[$i]['chave']);
+		self::$psy->update(function($data){
+				$data['chave'] = base64_encode($data['chave']);
+				return $data;
+			});
+		$result_res1 = self::$psy->node();
+
+		$this->assertEquals( $expected_result_res1, $result_res1);
+
+		// restore
+		self::$psy->delete(function(){ return true; });
+		$this->test_insert(); // prepare
+		$this->test_insert_multlines(); // prepare
+	}
 
 	/**
 	 * function drop not yet implemented in psyDuck class, 
