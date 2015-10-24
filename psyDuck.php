@@ -14,7 +14,7 @@
 class psyDuck
 {
 
-	// store the folder path to store the json files
+	// the folder path to store the json files
 	private $container_path;
 	private $file_pointer; // current json file pointer
 	private $file_name; // currente json file name
@@ -99,7 +99,7 @@ class psyDuck
 	 * @param  function $callbk
 	 * @return array|false
 	 */
-	public function get ( $callbk=null )
+	public function get ( $callbk )
 	{
 		if (is_callable($callbk)) {
 			foreach ($this->fetch() as $value):
@@ -134,7 +134,30 @@ class psyDuck
 	}
 
 	/**
+	 * Return a array with the result of function each or fetch if no closure function was passed
+	 *     must be used with careful
+	 * @param  function $pattern filter the data
+	 * @return array
+	 */
+	public function node ( $pattern=null )
+	{
+		if (is_callable($pattern))
+			$generator = $this->each( $pattern, true );
+		else
+			$generator = $this->fetch();
+
+		$result = array();
+		
+		foreach ( $generator as $line):
+			$result[] = $line;
+		endforeach;
+
+		return $result;
+	}
+
+	/**
 	 * Aplly a closure function in each parsed element returned by "fetch"
+	 *    if $filter equal false, the arg function must return, strictly a boolean
 	 * @param  function  $func   
 	 * @param  boolean $filter if defined as true, will expect a boolean result to retrieve data
 	 * @return Generator
@@ -146,8 +169,9 @@ class psyDuck
 				$func_result = $func( $value );
 								//@todo need find a bettter way to avoid empty results
 				if ($filter):
-					if(false == $func_result) continue;
-					yield $func_result;
+					if(false == $func_result)	continue;
+					if(true === $func_result)	yield $value;
+					else						yield $func_result;
 				else:
 					if( true === $func_result )
 						yield $value;
@@ -176,7 +200,7 @@ class psyDuck
 	 * Delete a row line
 	 *  the closure function should return "true" when receives the value of array/line index to delete
 	 * @param  function $pattern should return true to delete de current index
-	 * @return boolean
+	 * @return void
 	 */
 	public function delete ( $pattern=null )
 	{
@@ -194,8 +218,9 @@ class psyDuck
 	}
 
 	/**
-	 * update modified inside the passed colsure function
+	 * update as modified inside the passed closure function
 	 * the closure function's argument must be passed as reference, in order to alter the data
+	 * ** the modifications can be directly returned as well
 	 * @param  function $pattern the argument should be set as reference (with & prefix)
 	 * @return void
 	 */
@@ -204,8 +229,10 @@ class psyDuck
 		$this->start_supply();
 		if (is_callable($pattern)) {
 			foreach ($this->fetch() as $data):
-					$pattern( $data );
-					$this->write_supply( $data );
+					if ( $func_result = $pattern( $data ) )
+						$this->write_supply( $func_result );
+					else
+						$this->write_supply( $data );
 			endforeach;
 		} else {
 			return $this->say("you feel lucky? ... sure? why are you calling the update function without a closure function to filter?");
@@ -256,6 +283,21 @@ class psyDuck
 		while ( false !== ( $line = fgets($this->file_pointer, 10) ) )
 			$counter = $counter + substr_count($line, PHP_EOL);
 		return $counter;
+	}
+
+	/**
+	 * Delete a entire storage file, returning excluded data
+	 * ** ** should be used with careful
+	 *  
+	 * ** ** ** (for while, this method does nothing. is here just to remember to implement later) '(º_^)'
+	 * 
+	 * @param  [type] $file [description]
+	 * @return array|boolean  return the data excluded or false
+	 * @todo make it work for real
+	 */
+	public function drop ( $file )
+	{
+		# yet to come
 	}
 
 	/**
