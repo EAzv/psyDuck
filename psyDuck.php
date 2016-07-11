@@ -212,7 +212,7 @@ class psyDuck
 				endif;
 			endforeach;
 		} else {
-			return $this->say("you feel lucky? ... sure? why are you calling the delete function without a closure function to filter?");
+			return $this->say("do you feel lucky? ... sure? why are you calling the delete function without a closure function to filter?");
 		}
 		$this->set_supply();
 	}
@@ -235,7 +235,7 @@ class psyDuck
 						$this->write_supply( $data );
 			endforeach;
 		} else {
-			return $this->say("you feel lucky? ... sure? why are you calling the update function without a closure function to filter?");
+			return $this->say("do you feel lucky? ... sure? why are you calling the update function without a closure function to filter?");
 		}
 		$this->set_supply();
 	}
