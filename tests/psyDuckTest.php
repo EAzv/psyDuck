@@ -40,7 +40,7 @@ class psyDuckTest extends PHPUnit_Framework_TestCase
 		// default container for tests
 		self::$psy->in('test_content');
 		// default file container for tests
-		$this->test_content = self::FOLDER . self::DS . 'test_content.json';
+		$this->test_content = self::FOLDER . self::DS . 'test_content.jsonl';
 		// check if was created properly
 		$this->assertFileExists( $this->test_content );
 	}
@@ -320,8 +320,8 @@ class psyDuckTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test_drop()
 	{
-		if (file_exists( self::FOLDER . self::DS . 'test_content.json')) {
-			unlink( self::FOLDER . self::DS . 'test_content.json');
+		if (file_exists( self::FOLDER . self::DS . 'test_content.jsonl')) {
+			unlink( self::FOLDER . self::DS . 'test_content.jsonl');
 		}
 	}
 

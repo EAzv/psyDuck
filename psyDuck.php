@@ -54,14 +54,14 @@ class psyDuck
 
 	/**
 	 * Define the name of the file container to store data (works like a table)
-	 * @param  string $file define the storage file, must be passed without the (dot).JSON extension
+	 * @param  string $file define the storage file, must be passed without the (dot).JSONL extension
 	 * @return object  (return a instance of the obj itself, helps with chain methods)
 	 */
 	public function in ( $file )
 	{
 		$this->close();
 		$this->file_name = $file;
-		$file = $this->container_path . $file . '.json';
+		$file = $this->container_path . $file . '.jsonl';
 		if($this->file_pointer = fopen( $file, 'a+') ) {
 			return $this;
 		} else {
@@ -307,7 +307,7 @@ class psyDuck
 	private function start_supply ()
 	{
 		$this->supply_file_name = $this->file_name . '.' . uniqid();
-		$temp_file = $this->container_path . $this->supply_file_name . '.json';
+		$temp_file = $this->container_path . $this->supply_file_name . '.jsonl';
 		if($this->supply_file_pointer = fopen( $temp_file, 'w') )
 			return true;
 		else
@@ -336,8 +336,8 @@ class psyDuck
 		if ( is_resource( $this->supply_file_pointer ) )
 			fclose($this->supply_file_pointer);
 		$this->close();
-		$real_file = $this->container_path . $this->file_name . '.json';
-		$supply_file = $this->container_path . $this->supply_file_name . '.json';
+		$real_file = $this->container_path . $this->file_name . '.jsonl';
+		$supply_file = $this->container_path . $this->supply_file_name . '.jsonl';
 		unlink( $real_file );
 		rename( $supply_file, $real_file );
 		$this->in( $this->file_name );
