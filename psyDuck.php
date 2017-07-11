@@ -42,11 +42,11 @@ class psyDuck
 
 		if ( !is_dir($path) ){ // if doesn't exist
 			if ( !@mkdir( $path, 0777, true ) ) // try to create
-				$this->say("Fail when trying to create storage folder on path '{$path}'.\n check write permissions.");
+				throw new Exception("Fail when trying to create storage folder on path '{$path}'.\n check write permissions.");
 		}
 
 		if ( !is_writable($path) ) // if is not writable
-			$this->say('the especified path "'. $path .'" is not writable.');
+			throw new Exception("the especified path ({$path}) is not writable.");
 		
 		$this->container_path = $path;
 		return true;
@@ -65,7 +65,7 @@ class psyDuck
 		if($this->file_pointer = fopen( $file, 'a+') ) {
 			return $this;
 		} else {
-			$this->say("Failed to open the file to storage, check the write permissions of the <i>{$this->container_path}</i> directory");
+			throw new Exception("Failed to open the file to storage, check the write permissions of the <i>{$this->container_path}</i> directory");
 		}
 	}
 
@@ -78,9 +78,9 @@ class psyDuck
 	public function insert ( $data, $mult=false )
 	{
 		if (!is_array($data)) 
-			$this->say('The argument must be array');
+			throw new Exception('The argument must be array');
 		if (!$this->file_pointer) 
-			$this->say('File pointer not defined');
+			throw new Exception('File pointer not defined');
 
 		if ( $mult === true ) {
 			for ($i=0; $i < count($data); $i++) { 
@@ -89,7 +89,7 @@ class psyDuck
 		} else {
 			$_content = json_encode($data) . PHP_EOL;
 			if (!fwrite( $this->file_pointer, $_content))
-				$this->say('Fails to write file');
+				throw new Exception('Fails to write file');
 		}
 	}
 
@@ -114,7 +114,7 @@ class psyDuck
 			endforeach;
 			return false;
 		} else {
-			$this->say("the passed argument must be callable");
+			throw new Exception("the passed argument must be callable");
 		}
 	}
 
@@ -176,7 +176,7 @@ class psyDuck
 					if( true === $func_result )
 						yield $value;
 					elseif ( false != $func_result )
-						$this->say("The return of the closure function must be boolean...");
+						throw new Exception("The return of the closure function must be boolean...");
 				endif;
 			endforeach;
 		}
@@ -189,7 +189,7 @@ class psyDuck
 	public function fetch ()
 	{
 		if (!$this->file_pointer) 
-			$this->say('File pointer not defined');
+			throw new Exception('File pointer not defined');
 		rewind( $this->file_pointer );
 		while ( false !== ($line = fgets($this->file_pointer)) ) {
 			yield json_decode( $line, true );
@@ -212,7 +212,7 @@ class psyDuck
 				endif;
 			endforeach;
 		} else {
-			return $this->say("do you feel lucky? ... sure? why are you calling the delete function without a closure function to filter?");
+			throw new Exception("do you feel lucky? ... sure? why are you calling the delete function without a closure function to filter?");
 		}
 		$this->set_supply();
 	}
@@ -235,7 +235,7 @@ class psyDuck
 						$this->write_supply( $data );
 			endforeach;
 		} else {
-			return $this->say("do you feel lucky? ... sure? why are you calling the update function without a closure function to filter?");
+			throw new Exception("do you feel lucky? ... sure? why are you calling the update function without a closure function to filter?");
 		}
 		$this->set_supply();
 	}
@@ -311,7 +311,7 @@ class psyDuck
 		if($this->supply_file_pointer = fopen( $temp_file, 'w') )
 			return true;
 		else
-			$this->say("Failed in create temporary file, check the write permissions of the <i>{$this->container_path}</i> directory");
+			throw new Exception("Failed in create temporary file, check the write permissions of the <i>{$this->container_path}</i> directory");
 	}
 
 	/**
@@ -370,40 +370,15 @@ class psyDuck
 	}
 
 	/**
-	 * Display the class's default debugger messages
-	 * @param  string $msg
-	 * @return void print a message with some informations from the caller
-	 */
-	private function say ($msg)
-	{
-		foreach (debug_backtrace() as $debug_backtrace ) {
-			if ( isset($debug_backtrace['class']) && $debug_backtrace['class'] == 'psyDuck' )
-				$backtrace = $debug_backtrace;
-		}
-
-		$message  = "<img style=\"max-height:75px;float:left;margin:6px\" src=\"http://images.uncyc.org/commons/c/c6/PsyduckSprite.gif\" />";
-		$message .= "<p>&nbsp;&nbsp; <i>psyDuck says</i>: <b>{$msg}</b><br>";
-		$message .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-		$message .= "<b>File: </b><i>{$backtrace['file']}</i>, <b>Function: </b><i>{$backtrace['function']}</i>, <b>Line: </b><i>{$backtrace['line']}</i>. </p>";
-		$message  = "<html><body>". $message ."</body></html>";
-		
-		// try to avoid print html in terminal
-		if(php_sapi_name() == "cli") {
-			trigger_error("\n\t psyDuck says: {$msg}, Function: {$backtrace['function']}.\n");
-		} else {
-			print $message; die();
-		}
-	}
-
-	/**
 	 * For while, just close the container file pointer
 	 * @return void
 	 */
 	private function close ()
 	{
-		if ( !is_resource($this->file_pointer) ) return false;
+		if (!is_resource($this->file_pointer))
+			return false;
 		if (!fclose($this->file_pointer))
-			$this->say("Failed in close the storage file pointer");
+			throw new Exception("Failed in close the storage file pointer");
 	}
 
 	function __destruct() {
