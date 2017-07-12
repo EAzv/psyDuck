@@ -27,7 +27,7 @@ class psyDuck
 	 */
 	function __construct( $container = null )
 	{
-		if (isset($container))
+		if ($container != null)
 			$this->setContainer($container);
 	}
 
@@ -235,7 +235,7 @@ class psyDuck
 						$this->write_supply( $data );
 			endforeach;
 		} else {
-			throw new Exception("do you feel lucky? ... sure? why are you calling the update function without a closure function to filter?");
+			throw new Exception("the update function needs a callback argument");
 		}
 		$this->set_supply();
 	}
