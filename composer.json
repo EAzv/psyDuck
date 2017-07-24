@@ -1,13 +1,13 @@
 {
 	"name": "eaz/psyduck",
-	"description": "a small php class to help store data (like a database), using json files",
+	"description": "Just a simple file-based database for php projects",
 	"type": "library",
-	"keywords": [ "lightweight", "json", "storage", "psyduck", "database" ],
+	"keywords": ["lightweight", "json", "storage", "psyduck", "database"],
 	"license": "MIT",
 	"authors": [
 		{
 			"name": "Eduardo Azevedo",
-			"email": "eduardoazevedo2.0@gmail.com"
+			"email": "eduhazvdo@gmail.com"
 		}
 	],
 	
@@ -16,10 +16,12 @@
 	},
 	
 	"require-dev": {
-		"phpunit/phpunit": "4.7.*"
+		"phpunit/phpunit": "6.2.*"
 	},
 
 	"autoload": {
-		"files": ["psyDuck.php"]
+		"psr-4": {
+			"psyDuck\\": "src/"
+		}
 	}
 }

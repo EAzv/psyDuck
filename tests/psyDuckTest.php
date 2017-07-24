@@ -1,5 +1,7 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
+
 /**
 *
 * @requires PHP 5.6
@@ -7,93 +9,112 @@
 * 
 * @coversDefaultClass psyDuck
 */
-class psyDuckTest extends PHPUnit_Framework_TestCase
+class psyDuckTest extends TestCase
 {
 
 	const DS = DIRECTORY_SEPARATOR;
 	const FOLDER = __DIR__ . self::DS . 'storage';
+
 	protected static $psy;
-	protected $folder = self::FOLDER;
+	protected static $test_content;
 
 
-	public function test_create()
-	{	
+	public function __construct()
+	{
+		parent::__construct();
+
+		// default file container for tests
+		self::$test_content = self::FOLDER . self::DS . 'test_content.jsonl';
+		if (file_exists(self::$test_content))
+			unlink(self::$test_content);
+
 		// defines the class
-		self::$psy = new psyDuck();
+		self::$psy = new psyDuck\psyDuck();
+		self::$psy->setContainer(self::FOLDER);
 	}
 
-	/**
-	 * @covers setContainer
-	 * @depends test_create
-	 */
-	public function test_setContainer()
+	public function __destruct()
 	{
-		self::$psy->setContainer(self::FOLDER);
+		if (is_callable('parent::__destruct'))
+			parent::__destruct();
+
+		if (file_exists(self::$test_content))
+			unlink(self::$test_content);
+
+		if (is_dir(self::FOLDER))
+			rmdir(self::FOLDER);
+	}
+
+	public function tearDown()
+	{
+		//sleep(1);
 	}
 
 	/**
 	 * @covers in
-	 * @depends test_setContainer
 	 */
-	public function test_in()
+	public function testIn()
 	{
 		// default container for tests
 		self::$psy->in('test_content');
-		// default file container for tests
-		$this->test_content = self::FOLDER . self::DS . 'test_content.jsonl';
+
 		// check if was created properly
-		$this->assertFileExists( $this->test_content );
+		$this->assertFileExists( self::$test_content );
 	}
 
 	/**
 	 * @covers insert
-	 * @depends test_in
+	 * @depends testIn
 	 */
-	public function test_insert()
+	public function testInsert()
 	{
-		$this->test_in();
+		//$this->testIn();
 
 		// array to insert
-		$to_insert = $this->generateArrayToinsert(0,1);
+		$to_insert = $this->generateArrayList(0,1);
 		
 		// file content expected to be like this
-		$expected_content = $this->generateContentToCompare(0,1);
+		$expected_content = $this->generateJsonList(0,1);
 		
 		// do insertion
 		self::$psy->insert($to_insert);
+		//die(print_r($to_insert, true));
+		//die(print_r($expected_content, true));
 		
 		// Assert
-		$this->assertStringEqualsFile( $this->test_content, $expected_content);
+		$this->assertStringEqualsFile( self::$test_content, $expected_content);
 	}
 
 	/**
 	 * @covers insert
-	 * @depends test_insert
+	 * @depends testInsert
 	 */
-	public function test_insert_multlines()
+	public function testInsertMultlines()
 	{
-		$this->test_in(); // prepare
+		//$this->testInsert(); // prepare
 
 		// array to insert
-		$to_insert = $this->generateArrayToinsert(1);
+		$to_insert = $this->generateArrayList(1);
 
 		// file content expected to be like this
-		$expected_content  = $this->generateContentToCompare(0);
+		$expected_content  = $this->generateJsonList(0);
 		
 		// do insertion
 		self::$psy->insert($to_insert, true);
+		//die(print_r($to_insert, true));
+		//die(print_r($expected_content, true));
 
 		// Assert
-		$this->assertStringEqualsFile( $this->test_content, $expected_content);
+		$this->assertStringEqualsFile( self::$test_content, $expected_content);
 	}
 
 	/**
-	 * @covers insert
-	 * @depends test_insert_multlines
+	 * @covers get
+	 * @depends testInsertMultlines
 	 */
-	public function test_get()
+	public function testGet()
 	{
-		$this->test_in(); // prepare
+		//$this->testInsertMultlines(); // prepare
 		
 		$expected_result_entire	= array( 'Segundo', 'chave'=>'valor2', 'numero'=>2016 );
 		$expected_result_null = false;
@@ -101,7 +122,7 @@ class psyDuckTest extends PHPUnit_Framework_TestCase
 
 		//shold return the entire data
 		$result_entire = self::$psy->get(function($data){
-				if ($data['chave'] == 'valor2')	return true;
+				if ($data['chave'] == 'valor2')	return $data;
 			});
 		
 		//shold not find any data, and return false
@@ -132,22 +153,22 @@ class psyDuckTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @covers find, each and fetch
-	 * @depends test_insert_multlines
+	 * @depends testInsertMultlines
 	 */
-	public function test_find()
+	public function testFind()
 	{
-		$this->test_in(); // prepare
+		//$this->testInsertMultlines(); // prepare
 
 		##########################################################
 		## tests the result as it is, without modificatios
-		$expected_result_entire = $this->generateArrayToinsert(0);
+		$expected_result_entire = $this->generateArrayList(0);
 		$result_entire = array();
 		foreach (self::$psy->find() as $value)
 			$result_entire[] = $value;
 
 		##########################################################
 		## tests the result with modificatios
-		$expected_result_modified = $this->generateArrayToinsert(0);
+		$expected_result_modified = $this->generateArrayList(0);
 		for ($i=0; $i < count($expected_result_modified); $i++)
 			$expected_result_modified[$i]['chave'] .= ' conta:'.$i;
 		$result_modified = array();
@@ -171,7 +192,7 @@ class psyDuckTest extends PHPUnit_Framework_TestCase
 
 		##########################################################
 		## first test of filtered shearch
-		$expected_result_res1 = $this->generateArrayToinsert(3,9); // return values bettwen 3 and 9
+		$expected_result_res1 = $this->generateArrayList(3,9); // return values bettwen 3 and 9
 		$result_res1 = array();
 		$generator_res1 = self::$psy->find(function($data){
 			// get the last value, who is a number
@@ -184,7 +205,7 @@ class psyDuckTest extends PHPUnit_Framework_TestCase
 		##########################################################
 		## Second test of filtered shearch
 		#	                                                             jump the 4º index
-		$expected_result_res2 = array_merge( $this->generateArrayToinsert(0,3), $this->generateArrayToinsert(4) );
+		$expected_result_res2 = array_merge( $this->generateArrayList(0,3), $this->generateArrayList(4) );
 		$result_res2 = array();
 		$generator_res2 = self::$psy->find(function($data){
 				if( $data['chave'] != 'valor4' ) return true;
@@ -211,16 +232,16 @@ class psyDuckTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @covers node
-	 * @depends test_insert_multlines
+	 * @depends testInsertMultlines
 	 */
-	public function test_node()
+	public function testNode()
 	{
-		$this->test_in(); // prepare
+		//$this->testIn(); // prepare
 		
-		$expected_result_entire = $this->generateArrayToinsert(0);
+		$expected_result_entire = $this->generateArrayList(0);
 		$result_entire = self::$psy->node();
 
-		$expected_result_modified = $this->generateArrayToinsert(0);
+		$expected_result_modified = $this->generateArrayList(0);
 		for ($i=0; $i < count($expected_result_modified); $i++)
 			$expected_result_modified[$i]['chave'] = $i;
 		$result_modified = self::$psy->node(function($data){
@@ -239,14 +260,14 @@ class psyDuckTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @covers delete
-	 * @depends test_insert_multlines
+	 * @depends testInsertMultlines
 	 */
-	public function test_delete()
+	public function testDelete()
 	{
-		$this->test_in(); // prepare
+		//$this->testIn(); // prepare
 
 		# delete only one line                                       jump the 3º index
-		$expected_result_res1 = array_merge( $this->generateArrayToinsert(0,2), $this->generateArrayToinsert(3) );
+		$expected_result_res1 = array_merge( $this->generateArrayList(0,2), $this->generateArrayList(3) );
 		self::$psy->delete(function($data){
 				if($data[0] == 'Terceiro') return true;
 			});
@@ -263,19 +284,19 @@ class psyDuckTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals( $expected_result_res2, $result_res2 );
 
 		// restore
-		$this->test_insert(); // prepare
-		$this->test_insert_multlines(); // prepare
+		$this->testInsert(); // prepare
+		$this->testInsertMultlines(); // prepare
 	}
 
 	/**
 	 * @covers update
-	 * // @ # depends delete
+	 * @depends testDelete
 	 */
-	public function test_update()
+	public function testUpdate()
 	{
-		$this->test_in(); // prepare
+		//$this->testIn(); // prepare
 		
-		$expected_result_res1 = $this->generateArrayToinsert(0);
+		$expected_result_res1 = $this->generateArrayList(0);
 		for ($i=0; $i < count($expected_result_res1); $i++)
 			$expected_result_res1[$i]['chave'] = base64_encode($expected_result_res1[$i]['chave']);
 		self::$psy->update(function($data){
@@ -288,19 +309,20 @@ class psyDuckTest extends PHPUnit_Framework_TestCase
 
 		// restore
 		self::$psy->delete(function(){ return true; });
-		$this->test_insert(); // prepare
-		$this->test_insert_multlines(); // prepare
+		$this->testInsert(); // prepare
+		$this->testInsertMultlines(); // prepare
 	}
 
 	/**
 	 * @covers count
-	 * @depends test_insert_multlines
+	 * @depends testInsertMultlines
 	 */
-	public function test_count()
+	public function testCount()
 	{
-		$this->test_in(); // prepare
+		//$this->testIn(); // prepare
+
 		self::$psy->delete(function(){ return true; }); // prepare
-		self::$psy->insert( $this->generateArrayToinsert(0,5), true);
+		self::$psy->insert( $this->generateArrayList(0,5), true);
 
 		$expected_result_res1 = 5;
 		$result_res1 = self::$psy->count();
@@ -309,47 +331,32 @@ class psyDuckTest extends PHPUnit_Framework_TestCase
 
 		// restore
 		self::$psy->delete(function(){ return true; });
-		$this->test_insert(); // prepare
-		$this->test_insert_multlines(); // prepare
-	}
-
-	/**
-	 * function drop not yet implemented in psyDuck class, 
-	 *    this is jus a prototype
-	 * @depends test_create
-	 */
-	public function test_drop()
-	{
-		if (file_exists( self::FOLDER . self::DS . 'test_content.jsonl')) {
-			unlink( self::FOLDER . self::DS . 'test_content.jsonl');
-		}
+		$this->testInsert(); // prepare
+		$this->testInsertMultlines(); // prepare
 	}
 
 
-	######################################################################################
+
+
+
+
+######################################################################################
 	
 	const ORDINAL = [ 'Primeiro', 'Segundo', 'Terceiro', 'Quarto', 'Quinto', 'Sexto', 'Sétimo', 'Oitavo', 'Nono', 'Décimo', 'Décimo primeiro', 'Décimo segundo', 'Técimo terceiro', 'Décimo quarto', 'Décimo quinto' ];
 
-	protected function generateArrayToinsert ($first=0, $last=15)
+	private function generateArrayList (int $first=0, int $last=15, bool $curby=false):array
 	{
 		$r_array = array();
-
-		for ( $i = $first+1; $i <= $last; $i++):
-			$r_array[] = array( self::ORDINAL[$i-1], 'chave'=>'valor'.($i), 'numero'=>2015+($i-1) );
-		endfor;
-
-		if (count($r_array) > 1)
-			return $r_array;
-		else
-			return $r_array[0];
+		for ( $i = $first+1; $i <= $last; $i++)
+			$r_array[] = array(self::ORDINAL[$i-1], 'chave'=>'valor'.($i), 'numero'=>2015+($i-1));
+		return (count($r_array)>1 || $curby==true) ? $r_array : $r_array[0];
 	}
 
-	protected function generateContentToCompare ($first=0, $last=15)
+	private function generateJsonList (int $first=0, int $last=15):string
 	{
-		$to_return = "";
-		for ( $i = $first+1; $i <= $last; $i++):
-			$to_return .= '{"0":"'. str_replace('é', '\u00e9', self::ORDINAL[$i-1]) .'","chave":"valor'.$i.'","numero":'.(2015+($i-1)).'}'.PHP_EOL;
-		endfor;
+		$to_return = ""; $array_list = $this->generateArrayList($first, $last, true);
+		foreach ($array_list as $_index)
+			$to_return .= json_encode($_index).PHP_EOL;
 		return $to_return;
 	}
 }

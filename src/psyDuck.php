@@ -1,11 +1,14 @@
 <?php 
 
+namespace psyDuck;
+
 /**
 *       PHP psyDuck 
-*  Just a small php class to store data (acting as a database) using json files
+*  Just a simple file-based database for php projects
 *
-* the very first thing to do when instantiate a new object, is define the storage folder, which can be done passing as string argument on object construct or with the setContainer method
-*   and it's also very important to verify the write permissions of the defined storage folder
+*  The very first thing to do when instantiating a new object, is to set the storage folder, 
+* wich can be done by passing as string argument in the object constructor or by the setContainer method.
+*  And it's also important to check the write permissions of the defined storage folder
 *
 * @author Eduardo Azevedo <eduh.azvdo@gmail.com>
 * @version 0.01
@@ -38,15 +41,18 @@ class psyDuck
 	 */
 	public function setContainer ( $path )
 	{
-		if($path) $path .= DIRECTORY_SEPARATOR; else return false;
+		if($path)
+			$path .= DIRECTORY_SEPARATOR;
+		else
+			return false;
 
 		if ( !is_dir($path) ){ // if doesn't exist
 			if ( !@mkdir( $path, 0777, true ) ) // try to create
-				throw new Exception("Fail when trying to create storage folder on path '{$path}'.\n check write permissions.");
+				throw new \Exception("Fail when trying to create storage folder on path '{$path}'.\n check write permissions.");
 		}
 
 		if ( !is_writable($path) ) // if is not writable
-			throw new Exception("the especified path ({$path}) is not writable.");
+			throw new \Exception("the especified path ({$path}) is not writable.");
 		
 		$this->container_path = $path;
 		return true;
@@ -65,7 +71,7 @@ class psyDuck
 		if($this->file_pointer = fopen( $file, 'a+') ) {
 			return $this;
 		} else {
-			throw new Exception("Failed to open the file to storage, check the write permissions of the <i>{$this->container_path}</i> directory");
+			throw new \Exception("Failed to open the file to storage, check the write permissions of the {$this->container_path} directory");
 		}
 	}
 
@@ -78,9 +84,9 @@ class psyDuck
 	public function insert ( $data, $mult=false )
 	{
 		if (!is_array($data)) 
-			throw new Exception('The argument must be array');
+			throw new \Exception('The argument must be array');
 		if (!$this->file_pointer) 
-			throw new Exception('File pointer not defined');
+			throw new \Exception('File pointer not defined');
 
 		if ( $mult === true ) {
 			for ($i=0; $i < count($data); $i++) { 
@@ -89,7 +95,7 @@ class psyDuck
 		} else {
 			$_content = json_encode($data) . PHP_EOL;
 			if (!fwrite( $this->file_pointer, $_content))
-				throw new Exception('Fails to write file');
+				throw new \Exception('Fails to write file');
 		}
 	}
 
@@ -114,7 +120,7 @@ class psyDuck
 			endforeach;
 			return false;
 		} else {
-			throw new Exception("the passed argument must be callable");
+			throw new \Exception("the passed argument must be callable");
 		}
 	}
 
@@ -176,7 +182,7 @@ class psyDuck
 					if( true === $func_result )
 						yield $value;
 					elseif ( false != $func_result )
-						throw new Exception("The return of the closure function must be boolean...");
+						throw new \Exception("The return of the closure function must be boolean...");
 				endif;
 			endforeach;
 		}
@@ -189,7 +195,7 @@ class psyDuck
 	public function fetch ()
 	{
 		if (!$this->file_pointer) 
-			throw new Exception('File pointer not defined');
+			throw new \Exception('File pointer not defined');
 		rewind( $this->file_pointer );
 		while ( false !== ($line = fgets($this->file_pointer)) ) {
 			yield json_decode( $line, true );
@@ -212,7 +218,7 @@ class psyDuck
 				endif;
 			endforeach;
 		} else {
-			throw new Exception("do you feel lucky? ... sure? why are you calling the delete function without a closure function to filter?");
+			throw new \Exception("do you feel lucky? ... sure? why are you calling the delete function without a closure function to filter?");
 		}
 		$this->set_supply();
 	}
@@ -235,7 +241,7 @@ class psyDuck
 						$this->write_supply( $data );
 			endforeach;
 		} else {
-			throw new Exception("the update function needs a callback argument");
+			throw new \Exception("the update function needs a callback argument");
 		}
 		$this->set_supply();
 	}
@@ -311,7 +317,7 @@ class psyDuck
 		if($this->supply_file_pointer = fopen( $temp_file, 'w') )
 			return true;
 		else
-			throw new Exception("Failed in create temporary file, check the write permissions of the <i>{$this->container_path}</i> directory");
+			throw new \Exception("Failed in create temporary file, check the write permissions of the <i>{$this->container_path}</i> directory");
 	}
 
 	/**
@@ -378,7 +384,7 @@ class psyDuck
 		if (!is_resource($this->file_pointer))
 			return false;
 		if (!fclose($this->file_pointer))
-			throw new Exception("Failed in close the storage file pointer");
+			throw new \Exception("Failed in close the storage file pointer");
 	}
 
 	function __destruct() {
